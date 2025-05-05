@@ -1,0 +1,152 @@
+@font-face {
+  font-family: leagueSpartan;
+  src: url("/League_Spartan/LeagueSpartan-VariableFont_wght.ttf");
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: leagueSpartan;
+  font-weight: 700;
+}
+
+@mixin displayFlex($alignItems: center, $justifyContent: center) {
+  display: flex;
+  align-items: $alignItems;
+  justify-content: $justifyContent;
+}
+
+body {
+  background-color: map-get($colors, main-bg);
+  color: map-get($colors, neutral);
+  height: 100vh;
+  @include displayFlex;
+}
+
+main {
+  padding: 2em;
+}
+
+//Important: restructure this function
+@function text-color($color) {
+  @if $color == hsl(221, 14%, 31%) {
+    @return white;
+  } @else if $color == hsl(52, 100%, 62%) {
+    @return hsl(52, 100%, 62%);
+  } @else if $color == hsl(60, 10%, 19%) {
+    @return hsl(60, 10%, 19%);
+  }
+}
+
+header {
+  @include displayFlex($justifyContent: space-between);
+  color: text-color(map-get($colors, grayish-blue));
+  h3 {
+    font-size: 2rem;
+  }
+  div {
+    @include displayFlex;
+    gap: 1em;
+    span {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+    }
+    #toggle-div {
+      background-color: map-get($colors, toggle/keypad-bg);
+      border-radius: 3em;
+      padding: 0.3em;
+      input[type="radio"] {
+        appearance: none;
+      }
+    }
+    #labels-div {
+      justify-content: space-evenly;
+      font-size: 0.9em;
+      margin-bottom: 0.3em;
+    }
+  }
+  #rounded-switch {
+    background-color: map-get($colors, key-bg/toggle);
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform: translateX(-300%);
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+//Motion for rounded switch
+#theme-one:checked ~ #rounded-switch {
+  transform: translateX(-300%);
+}
+
+#theme-two:checked ~ #rounded-switch {
+  transform: translateX(-150%);
+}
+
+#theme-three:checked ~ #rounded-switch {
+  transform: translateX(0%);
+}
+
+#result {
+  background-color: map-get($colors, screen-bg);
+  margin: 1.3em 0;
+  padding: 1.5em 1em;
+  border-radius: 0.5em;
+  text-align: right;
+  font-size: 2rem;
+}
+
+@mixin btn-style(
+  $bgcolor: map-get($colors, main-key-bg),
+  $color: map-get($colors, grayish-blue),
+  $shadow-color: map-get($colors, main-key-shadow)
+) {
+  border: none;
+  font-size: 1.2rem;
+  color: $color;
+  background-color: $bgcolor;
+  border-radius: 0.2em;
+  padding: 0.6em;
+  box-shadow: 0 4px 0 $shadow-color;
+}
+
+section {
+  background-color: map-get($colors, toggle/keypad-bg);
+  padding: 1.2em;
+  border-radius: 0.5em;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+  button {
+    @include btn-style;
+    font-size: 1.5rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .span-btn {
+    grid-column: span 2;
+  }
+  #reset,
+  #delete {
+    @include btn-style(
+      $bgcolor: map-get($colors, key-bg),
+      $color: map-get($colors, neutral),
+      $shadow-color: map-get($colors, key-shadow)
+    );
+  }
+  #equals-to {
+    color: white;
+    @include btn-style(
+      $bgcolor: map-get($colors, key-bg/toggle),
+      $color: map-get($colors, equal-key-color),
+      $shadow-color: map-get($colors, equal-key-shadow)
+    );
+  }
+}

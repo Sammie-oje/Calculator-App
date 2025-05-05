@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <link rel="stylesheet" href="styles/theme/theme-one.css" id="stylelink" />
+
+    <title>Frontend Mentor | Calculator app</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h3>calc</h3>
+        <div>
+          <span>THEME</span>
+          <form>
+            <div id="labels-div">
+              <label for="theme-one"> 1 </label>
+              <label for="theme-two"> 2 </label>
+              <label for="theme-three"> 3 </label>
+            </div>
+            <div id="toggle-div">
+              <input
+                type="radio"
+                aria-label="Theme one"
+                id="theme-one"
+                name="theme"
+              />
+
+              <input
+                type="radio"
+                aria-label="Theme two"
+                id="theme-two"
+                name="theme"
+              />
+
+              <input
+                type="radio"
+                aria-label="Theme three"
+                id="theme-three"
+                name="theme"
+              />
+              <div id="rounded-switch"></div>
+            </div>
+          </form>
+        </div>
+      </header>
+
+      <p id="result">0</p>
+
+      <section>
+        <button class="num">7</button>
+        <button class="num">8</button>
+        <button class="num">9</button>
+        <button id="delete">DEL</button>
+        <button class="num">4</button>
+        <button class="num">5</button>
+        <button class="num">6</button>
+        <button id="plus">+</button>
+        <button class="num">1</button>
+        <button class="num">2</button>
+        <button class="num">3</button>
+        <button id="minus">-</button>
+        <button id="dot" class="num">.</button>
+        <button class="num">0</button>
+        <button id="divide">/</button>
+        <button id="times">x</button>
+        <button id="reset" class="span-btn">RESET</button>
+        <button id="equals-to" class="span-btn">=</button>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
