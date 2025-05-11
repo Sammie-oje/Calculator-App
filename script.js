@@ -23,20 +23,53 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+const screen = document.getElementById("screen");
 const numbers = document.querySelectorAll(".num");
-const result = document.querySelector("#result");
 
-const placeholder = "0";
+const operators = document.querySelectorAll(".operator");
+const deleteBtn = document.querySelector("#delete");
+
+const resetBtn = document.querySelector("#reset");
+
 numbers.forEach((num) => {
   num.addEventListener("click", () => {
-    if (result.textContent === placeholder) {
-      result.textContent += num.textContent;
+    if (screen.textContent === "0") {
+      screen.textContent = num.textContent;
+      operators.forEach((operator) => {
+        operator.disabled = false;
+      });
+    } else {
+      screen.textContent += num.textContent;
+      operators.forEach((operator) => {
+        operator.disabled = false;
+      });
     }
   });
 });
+operators.forEach((operator) => {
+  operator.addEventListener("click", (e) => {
+    if (operator.textContent === "x") {
+      operator.textContent = "*";
+    }
+    screen.textContent += operator.textContent;
+    operators.forEach((op) => (op.disabled = true)); //To prevent double clicking
+  });
+});
 
-// Add function
-const sum = () => {
-  const sumRegex = /[\d]+\+[\d]+/;
-  const sumBtn = document.getElementById("plus");
-};
+deleteBtn.addEventListener("click", () => {
+  screen.textContent = screen.textContent.slice(0, -1);
+  if (screen.textContent === "") {
+    screen.textContent = "0";
+  }
+});
+resetBtn.addEventListener("click", () => {
+  if (screen.textContent !== "0") {
+    screen.textContent = "";
+    screen.textContent = "0";
+  }
+});
+
+const equalsTo = document.getElementById("equals-to");
+equalsTo.addEventListener("click", () => {
+  screen.textContent = eval(screen.textContent);
+});

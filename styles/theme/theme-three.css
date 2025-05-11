@@ -67,6 +67,7 @@ header #rounded-switch {
 }
 header #rounded-switch:hover {
   cursor: pointer;
+  background-color: #2efff1;
 }
 
 #theme-one:checked ~ #rounded-switch {
@@ -81,13 +82,20 @@ header #rounded-switch:hover {
   transform: translateX(0%);
 }
 
-#result {
+#screen {
   background-color: hsl(268, 71%, 12%);
   margin: 1.3em 0;
   padding: 1.5em 1em;
   border-radius: 0.5em;
   text-align: right;
   font-size: 2rem;
+  color: hsl(52, 100%, 62%);
+}
+
+section #equals-to:active, section #reset:active,
+section #delete:active, section button:active {
+  box-shadow: none;
+  transform: scale(0.92);
 }
 
 section {
@@ -110,6 +118,7 @@ section button {
 }
 section button:hover {
   cursor: pointer;
+  background-color: #593187;
 }
 section .span-btn {
   grid-column: span 2;
@@ -124,6 +133,11 @@ section #delete {
   padding: 0.6em;
   box-shadow: 0 4px 0 hsl(285, 91%, 52%);
 }
+section #reset:hover,
+section #delete:hover {
+  cursor: pointer;
+  background-color: #8b0cc6;
+}
 section #equals-to {
   color: white;
   border: none;
@@ -133,4 +147,8 @@ section #equals-to {
   border-radius: 0.2em;
   padding: 0.6em;
   box-shadow: 0 4px 0 hsl(177, 92%, 70%);
+}
+section #equals-to:hover {
+  cursor: pointer;
+  background-color: #2efff1;
 }/*# sourceMappingURL=theme-three.css.map */

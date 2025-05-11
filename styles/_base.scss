@@ -75,6 +75,7 @@ header {
     transform: translateX(-300%);
     &:hover {
       cursor: pointer;
+      background-color: lighten(map-get($colors, key-bg/toggle), 15);
     }
   }
 }
@@ -92,13 +93,14 @@ header {
   transform: translateX(0%);
 }
 
-#result {
+#screen {
   background-color: map-get($colors, screen-bg);
   margin: 1.3em 0;
   padding: 1.5em 1em;
   border-radius: 0.5em;
   text-align: right;
   font-size: 2rem;
+  color: text-color(map-get($colors, grayish-blue));
 }
 
 @mixin btn-style(
@@ -113,6 +115,15 @@ header {
   border-radius: 0.2em;
   padding: 0.6em;
   box-shadow: 0 4px 0 $shadow-color;
+  &:hover {
+    cursor: pointer;
+    background-color: lighten($bgcolor, 15);
+  }
+}
+
+%active-btn-state {
+  box-shadow: none;
+  transform: scale(0.92);
 }
 
 section {
@@ -125,8 +136,8 @@ section {
   button {
     @include btn-style;
     font-size: 1.5rem;
-    &:hover {
-      cursor: pointer;
+    &:active {
+      @extend %active-btn-state;
     }
   }
 
@@ -140,6 +151,9 @@ section {
       $color: map-get($colors, neutral),
       $shadow-color: map-get($colors, key-shadow)
     );
+    &:active {
+      @extend %active-btn-state;
+    }
   }
   #equals-to {
     color: white;
@@ -148,5 +162,9 @@ section {
       $color: map-get($colors, equal-key-color),
       $shadow-color: map-get($colors, equal-key-shadow)
     );
+
+    &:active {
+      @extend %active-btn-state;
+    }
   }
 }
